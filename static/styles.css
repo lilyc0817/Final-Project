@@ -152,6 +152,7 @@ button {
   max-width: 100%;
   height: auto;
   display: block;
+  z-index: -1
 }
 
 .map-marker {
@@ -226,6 +227,7 @@ button {
     max-width: 100%;
     width: 100%;
     height: auto;
+    z-index: -1
   }
 
   .map-marker {
@@ -266,4 +268,12 @@ button {
   width: 100px;
   padding-top: 60px;
 }
+}
+
+#roomPanel{
+  float: right;
+  margin-top: -25vh;
+  position: relative;
+  z-index: 2;
+  background-color: white;
 }

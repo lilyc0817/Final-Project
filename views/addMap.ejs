@@ -28,16 +28,11 @@
     <a href="/admin/dashboard" class="admin-login">Back to Dashboard</a>
   </div>
   <div>
-    <h1><%=selectedLocations.buildings%></selectedLocations></h1>
+    <h1><%= event.event %> Map</h1>
   </div>
-  <!-- <div>
-    <h2><%=//event.building%></h2>
-    <%//rooms.forEach(=>{ %>
-      <h3><%=//event.room[r]%></h3>
-      <h3><</h3>
-    <%//})%>
-    
-  </div> -->
+
+  
+
 <!--Loading up the campus map-->
   <div class="main" id="mainContent">
     <div id="mapContainer">
@@ -45,14 +40,20 @@
       <img id="mapMarker" class="map-marker" src="" alt="" hidden>
     </div>
   </div>
+
+  <div id="roomPanel" hidden>
+    <h2 id="roomPanelTitle">""</h2>
+    <li id="roomList" >
+
+    </li>
+  </div>
   
   <script>
     const toggleButton = document.getElementById('sidebarToggle');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
     const locationLinks = document.querySelectorAll('.location-link');
-    const mapMarker = document.getElementById('mapMarker');
-    const info = document.getElementById()
+    const mapMarker = document.getElementById('mapMarker')
 
     const locations = {
       sb: { src: '/sb.png', alt: 'Science Building', top: '12%', left: '15%' },
@@ -115,8 +116,10 @@
         });
       }
 
-      roomPanel.classList.remove('hidden');
-      roomPanel.classList.add('visible');
+      // roomPanel.classList.remove('hidden');
+      // roomPanel.classList.add('visible');
+      roomPanel.removeAttribute('hidden');
+      // roomPanel.addAttribute('visible');
     }
 
     locationLinks.forEach(link => {
