@@ -69,6 +69,7 @@ button {
   font-size: 14px;
   margin-right: 8px;
   vertical-align: middle;
+  font-family: montserrat
 }
 
 #searchInput {
@@ -455,4 +456,18 @@ button {
   position: absolute;
   top: 1px;
   right: 150px;
+}
+.adminLogin{
+  flex: 1;
+  min-width: 80px;
+  padding: 10px 12px;
+  font-size: 13px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.2s ease;
+  margin: 0;
 }
