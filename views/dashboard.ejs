@@ -3,39 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
     <h1>Dashboard</h1>
     <a href="/">Back to Home</a>
-    <li>
-        <ul>
-            <% events.forEach(e => { %>
-            <li>
-                <h3><%= e.event %></h3>
-                <p><%= e.description%></p>
-                <p><%= e.link%></p>
-                <form action="/deleteEvent" method="POST">
-
-            <input
-                type="hidden"
-                name="id"
-                value="<%= e._id %>"
-            >
-
-            <button type="submit">
-                Delete
-            </button>
-
-        </form>
-        <form action="/editEvent/<%= e._id %>" method="POST">
-            <button type="submit">Edit</button>
-        </form>
-
-                    <a href="/events/<%= e._id %>/map">View on Map</a>
-                </li>
-            <% }) %>
-        </ul>
-    </li>
+    <div class="events-container">
+        <% events.forEach(e => { %>
+        <div class="event-card">
+            <h3><%= e.event %></h3>
+            <p class="event-description"><%= e.description %></p>
+            <div class="event-actions">
+                <form action="/deleteEvent" method="POST" style="display: inline;">
+                    <input type="hidden" name="id" value="<%= e._id %>">
+                    <button type="submit" class="btn-delete">Delete</button>
+                </form>
+                <form action="/editEvent/<%= e._id %>" method="POST" style="display: inline;">
+                    <button type="submit" class="btn-edit">Edit</button>
+                </form>
+                <a href="/events/<%= e._id %>/map" class="btn-map">View on Map</a>
+            </div>
+        </div>
+        <% }) %>
+    </div>
 </body>
 </html>

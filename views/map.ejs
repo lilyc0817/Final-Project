@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
+  <p class="search-btn">Search For Building: </p>
+  <input id="searchInput" class="search-btn" type="text" placeholder="e.g., Braun Music, Science Building"></input>
+  <button id="searchButton" class="search-btn">⌕</button>
+
   <button class="toggle-btn" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
 
   <div class="sidenav" id="sidebar">
@@ -45,6 +49,8 @@
 
   <script>
     const toggleButton = document.getElementById('sidebarToggle');
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
     const sidebar = document.getElementById('sidebar');
     const mainContent = document.getElementById('mainContent');
     const adminLogin = document.getElementById('adminLogin');
@@ -53,36 +59,27 @@
 
     //Matching up the images with the seeded data
     const locations = {
-      sb: { src: '/sb.png', alt: 'Science Building', top: '12%', left: '15%' },
-      mainbuilding: { src: '/mainbuilding.png', alt: 'Main Building', top: '62%', left: '27%' },
-      upperart: { src: '/upperart.png', alt: 'Art Studio', top: '25%', left: '25%' },
-      rb: { src: '/rb.png', alt: 'Rothenberg Building', top: '18%', left: '33%' },
-      pac: { src: '/pac.png', alt: 'Performing Arts Center', top: '31%', left: '43%' },
-      upperenglish: { src: '/upperenglish.png', alt: 'English Building', top: '30%', left: '28.5%' },
-      smud: { src: '/smud.png', alt: 'SMUD', top: '53%', left: '20%' },
-  
-      middlehumanities: { src: '/middlehumanities.png', alt: 'Gertrude Hall Building', top: '60%', left: '20%' },
-      middlescience: { src: '/middlescience.png', alt: 'Braun Science Building', top: '78%', left: '10%' },
-
-
-      braun: { src: '/braun.png', alt: 'Braun Music Center', top: '57%', left: '40%' },
-      ranney: { src: '/ranney.png', alt: 'Ranney House', top: '75%', left: '20%' },
-      parkinglot: { src: '/parkinglot.png', alt: 'Parking Lot', top: '85%', left: '20%' },
-
-     
-      pitcairn: { src: '/pitcairn.png', alt: 'Pitcairn', top: '88%', left: '48%' },
-
-
-      ceramics: { src: '/ceramics.png', alt: 'Ceramics Studio', top: '85%', left: '40%' },
-      gym: { src: '/gym.png', alt: 'Hoffman Gymnasium', top: '68%', left: '50%' },
-      field: { src: '/field.png', alt: 'Field', top: '58%', left: '65%' },
-
- 
-      quad: { src: '/quad.png', alt: 'Quad', top: '70%', left: '40%' },
-      madelinecourt: { src: '/madelinecourt.png', alt: 'Madeline Court', top: '40%', left: '37%' },
-      ayshirecourtyard: { src: '/ayshirecourtyard.png', alt: 'Ayrshire Courtyard', top: '23%', left: '33%' },
-      dancestudio: { src: '/dancestudio.png', alt: 'Dance Studio', top: '52%', left: '50%' },
-      mudd: { src: '/mudd.png', alt: 'MUDD', top: '88%', left: '33%' }
+      sb: { src: '/sb.png', alt: 'Science Building', top: '12%', left: '15%', names: ['science building', 'sb'] },
+      mainbuilding: { src: '/mainbuilding.png', alt: 'Main Building', top: '62%', left: '27%', names: ['main building', 'mb'] },
+      upperart: { src: '/upperart.png', alt: 'Art Studio', top: '25%', left: '25%', names: ['art studio', 'art'] },
+      rb: { src: '/rb.png', alt: 'Rothenberg Building', top: '18%', left: '33%', names: ['rothenberg building', 'rb', 'rothenberg'] },
+      pac: { src: '/pac.png', alt: 'Performing Arts Center', top: '31%', left: '43%', names: ['performing arts center', 'pac'] },
+      upperenglish: { src: '/upperenglish.png', alt: 'English Building', top: '30%', left: '28.5%', names: ['english building', 'eb', 'english'] },
+      smud: { src: '/smud.png', alt: 'SMUD', top: '53%', left: '20%', names: ['smud'] },
+      middlehumanities: { src: '/middlehumanities.png', alt: 'Gertrude Hall Building', top: '60%', left: '20%', names: ['gertrude hall', 'gertrude hall building', 'gertrude'] },
+      middlescience: { src: '/middlescience.png', alt: 'Braun Science Building', top: '78%', left: '10%', names: ['braun science building', 'braun science', 'science'] },
+      braun: { src: '/braun.png', alt: 'Braun Music Center', top: '57%', left: '40%', names: ['braun music center', 'braun music', 'braun', 'music center'] },
+      ranney: { src: '/ranney.png', alt: 'Ranney House', top: '75%', left: '20%', names: ['ranney house', 'ranney'] },
+      parkinglot: { src: '/parkinglot.png', alt: 'Parking Lot', top: '85%', left: '20%', names: ['parking lot', 'parking'] },
+      pitcairn: { src: '/pitcairn.png', alt: 'Pitcairn', top: '88%', left: '48%', names: ['pitcairn'] },
+      ceramics: { src: '/ceramics.png', alt: 'Ceramics Studio', top: '85%', left: '40%', names: ['ceramics studio', 'ceramics'] },
+      gym: { src: '/gym.png', alt: 'Hoffman Gymnasium', top: '68%', left: '50%', names: ['hoffman gymnasium', 'gymnasium', 'gym'] },
+      field: { src: '/field.png', alt: 'Field', top: '58%', left: '65%', names: ['field'] },
+      quad: { src: '/quad.png', alt: 'Quad', top: '70%', left: '40%', names: ['herrick quad', 'quad'] },
+      madelinecourt: { src: '/madelinecourt.png', alt: 'Madeline Court', top: '40%', left: '37%', names: ['madeline court', 'madeline'] },
+      ayshirecourtyard: { src: '/ayshirecourtyard.png', alt: 'Ayrshire Courtyard', top: '23%', left: '33%', names: ['ayrshire courtyard', 'ayrshire'] },
+      dancestudio: { src: '/dancestudio.png', alt: 'Dance Studio', top: '52%', left: '50%', names: ['dance studio', 'dance'] },
+      mudd: { src: '/mudd.png', alt: 'MUDD', top: '88%', left: '33%', names: ['mudd'] }
     };
 
     function showLocation(locationKey) {
@@ -95,6 +92,21 @@
       mapMarker.hidden = false;
       mapMarker.classList.add('visible');
     }
+
+    function searchBuilding(query) {
+      const searchQuery = query.toLowerCase().trim();
+      if (!searchQuery) return;
+
+      for (const [key, location] of Object.entries(locations)) {
+        if (location.names.some(name => name.includes(searchQuery) || searchQuery.includes(name))) {
+          showLocation(key);
+          searchInput.value = '';
+          return;
+        }
+      }
+      alert('Building not found. Try a different name.');
+    }
+
     //Displays the highlighted image on click
     locationLinks.forEach(link => {
       link.addEventListener('click', event => {
@@ -104,6 +116,16 @@
       });
     });
 
+    searchButton.addEventListener('click', () => {
+      searchBuilding(searchInput.value);
+    });
+
+    searchInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        searchBuilding(searchInput.value);
+      }
+    });
+
     toggleButton.addEventListener('click', () => {
       sidebar.classList.toggle('collapsed');
       mainContent.classList.toggle('expanded');
@@ -111,6 +133,7 @@
       toggleButton.textContent = sidebar.classList.contains('collapsed') ? '☰' : '×';
     });
   </script>
+      
 
 
 
