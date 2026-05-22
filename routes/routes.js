@@ -11,12 +11,14 @@ router.get("/", loadPage);
 router.get("/admin", adminLogin)
 
 //VERIFY PASSWORD
+router.get("/verify-password", eventLogin)
 router.post("/verify-password", verifyPassword)
 
 //ADMIN DASHBOARD
 router.get("/admin/dashboard", adminDashboard)
 
 //EVENT FORM
+router.get("/index", eventForm)
 router.post("/index", eventForm)
 
 //Password/Admin login
